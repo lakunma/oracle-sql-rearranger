@@ -4258,7 +4258,7 @@ collection_name
     ;
 
 link_name
-    : identifier
+    : id_expression ('.' id_expression) *
     ;
 
 column_name
