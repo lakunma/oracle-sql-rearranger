@@ -2357,6 +2357,7 @@ START_CMD
 
 REGULAR_ID: SIMPLE_LETTER (SIMPLE_LETTER | '$' | '_' | '#' | [0-9])*;
 
+BLOCK_STATEMENT_TERMINATOR: NEWLINE* '/' NEWLINE*  -> channel(HIDDEN);
 SPACES: [ \t\r\n]+ -> channel(HIDDEN);
 
 // Fragment rules

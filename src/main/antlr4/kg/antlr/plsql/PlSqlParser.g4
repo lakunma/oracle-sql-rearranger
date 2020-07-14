@@ -4078,8 +4078,7 @@ xmlserialize_param_ident_part
 // SqlPlus
 
 sql_plus_command
-    : '/'
-    | EXIT
+    : EXIT
     | PROMPT_MESSAGE
     | SHOW (ERR | ERRORS)
     | START_CMD
