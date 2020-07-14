@@ -3615,7 +3615,7 @@ insert_into_clause
     ;
 
 values_clause
-    : VALUES '(' expressions? ')'
+    : VALUES ('(' expressions? ')' | function_call)
     ;
 
 merge_statement
