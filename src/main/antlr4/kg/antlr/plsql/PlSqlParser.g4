@@ -58,6 +58,8 @@ unit_statement
     | audit_traditional
     | unified_auditing
 
+    | create_database_link
+
     | create_function_body
     | create_procedure_body
     | create_package
@@ -112,6 +114,10 @@ drop_function
 
 alter_function
     : ALTER FUNCTION function_name COMPILE DEBUG? compiler_parameters_clause* (REUSE SETTINGS)? ';'
+    ;
+
+create_database_link
+    : CREATE DATABASE LINK link_name CONNECT TO schema_name IDENTIFIED BY ((VALUES quoted_string) | identifier) USING quoted_string
     ;
 
 create_function_body
