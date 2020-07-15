@@ -403,7 +403,7 @@ create_type
 // Create Type Specific Clauses
 
 type_definition
-    : type_name (OID CHAR_STRING)? object_type_def?
+    : type_name FORCE? (OID CHAR_STRING)? object_type_def?
     ;
 
 object_type_def
