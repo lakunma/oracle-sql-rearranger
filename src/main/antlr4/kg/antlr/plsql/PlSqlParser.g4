@@ -1670,7 +1670,7 @@ create_materialized_view_log
              | COMMIT SCN
              )
            )*
-           ('(' ( ','? regular_id )+ ')' new_values_clause? )?
+           ('(' ( ','? regular_id )+ ')')? new_values_clause?
            mv_log_purge_clause?
         )*
     ;
