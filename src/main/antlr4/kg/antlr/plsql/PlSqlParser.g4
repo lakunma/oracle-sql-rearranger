@@ -1747,7 +1747,7 @@ create_cluster
 
 create_table
     : CREATE (GLOBAL TEMPORARY)? TABLE tableview_name
-        (relational_table | object_table | xmltype_table) (AS select_only_statement)?
+        (relational_table | object_table | xmltype_table) (AS select_only_statement)? (ORGANIZATION INDEX)? table_compression?
       ';'
     ;
 
