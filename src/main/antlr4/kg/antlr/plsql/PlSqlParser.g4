@@ -3574,7 +3574,7 @@ update_set_clause
 
 column_based_update_set_clause
     : column_name '=' expression
-    | paren_column_list '=' subquery
+    | paren_column_list '=' (expression | subquery)
     ;
 
 delete_statement
