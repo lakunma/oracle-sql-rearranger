@@ -96,6 +96,7 @@ unit_statement
 
     | comment_on_column
     | comment_on_table
+    | comment_on_mview
 
     | anonymous_block
 
@@ -2169,6 +2170,10 @@ create_synonym
 
 comment_on_table
     : COMMENT ON TABLE tableview_name IS quoted_string
+    ;
+
+comment_on_mview
+    : COMMENT ON MATERIALIZED VIEW tableview_name IS quoted_string SEMICOLON
     ;
 
 alter_cluster
