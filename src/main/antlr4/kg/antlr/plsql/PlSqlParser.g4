@@ -181,12 +181,12 @@ package_obj_spec
     ;
 
 procedure_spec
-    : PROCEDURE identifier ('(' parameter ( ',' parameter )* ')')? ';'
+    : PROCEDURE identifier ('(' parameter ( ',' parameter )* ')')? SEMICOLON?
     ;
 
 function_spec
     : FUNCTION identifier ('(' parameter ( ',' parameter)* ')')?
-      RETURN type_spec PIPELINED? DETERMINISTIC? (RESULT_CACHE)? ';'
+      RETURN type_spec PIPELINED? DETERMINISTIC? (RESULT_CACHE)? SEMICOLON?
     ;
 
 package_obj_body
@@ -447,18 +447,18 @@ subprog_decl_in_type
     ;
 
 proc_decl_in_type
-    : PROCEDURE procedure_name '(' type_elements_parameter (',' type_elements_parameter)* ')'
+    : PROCEDURE procedure_name '(' parameter (',' parameter)* ')'
       (IS | AS) (call_spec | DECLARE? seq_of_declare_specs? body ';')
     ;
 
 func_decl_in_type
-    : FUNCTION function_name ('(' type_elements_parameter (',' type_elements_parameter)* ')')?
+    : FUNCTION function_name ('(' parameter (',' parameter)* ')')?
       RETURN type_spec (IS | AS) (call_spec | DECLARE? seq_of_declare_specs? body ';')
     ;
 
 constructor_declaration
     : FINAL? INSTANTIABLE? CONSTRUCTOR FUNCTION type_spec
-      ('(' (SELF IN OUT type_spec ',') type_elements_parameter (',' type_elements_parameter)*  ')')?
+      ('(' (SELF IN OUT type_spec ',') parameter (',' parameter)*  ')')?
       RETURN SELF AS RESULT (IS | AS) (call_spec | DECLARE? seq_of_declare_specs? body ';')
     ;
 
@@ -488,7 +488,7 @@ element_spec_options
     ;
 
 subprogram_spec
-    : (MEMBER | STATIC) (type_procedure_spec | type_function_spec)
+    : (MEMBER | STATIC) (procedure_spec | function_spec)
     ;
 
 // TODO: should be refactored such as Procedure body and Function body, maybe Type_Function_Body and overriding_function_body
@@ -500,10 +500,6 @@ overriding_function_spec
     : FUNCTION function_name ('(' type_elements_parameter (',' type_elements_parameter)* ')')?
       RETURN (type_spec | SELF AS RESULT)
      (PIPELINED? (IS | AS) (DECLARE? seq_of_declare_specs? body))? ';'?
-    ;
-
-type_procedure_spec
-    : PROCEDURE procedure_name '(' type_elements_parameter (',' type_elements_parameter)* ')' ((IS | AS) call_spec)?
     ;
 
 type_function_spec
