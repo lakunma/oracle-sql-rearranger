@@ -2,7 +2,6 @@ package kg.antlr.plsql;
 
 import kg.antlr.CaseChangingCharStream;
 import kg.antlr.ThrowingErrorListener;
-import kg.antlr.plsql.PlSqlParser;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -13,7 +12,7 @@ import java.nio.file.Paths;
 
 public class TestUtils {
     static ParserRuleContext parseSqlScript(String filePath) {
-        CharStream cs = null;
+        CharStream cs;
         try {
             cs = CharStreams.fromPath(Paths.get(filePath));
         } catch (IOException e) {

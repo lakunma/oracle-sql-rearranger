@@ -1,6 +1,7 @@
 package kg.antlr.plsql;
 
-import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.Lexer;
 
 public abstract class PlSqlLexerBase extends Lexer
 {
