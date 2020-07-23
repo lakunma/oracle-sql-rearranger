@@ -1,6 +1,7 @@
 package kg.antlr.plsql;
 
-import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.Parser;
+import org.antlr.v4.runtime.TokenStream;
 
 public abstract class PlSqlParserBase extends Parser
 {
