@@ -83,6 +83,7 @@ unit_statement
     | create_sequence
     | create_trigger
     | create_type
+    | create_type_body
     | create_synonym
 
     | drop_function
@@ -401,14 +402,11 @@ dependent_exceptions_part
     ;
 
 create_type
-    : CREATE (OR REPLACE)? TYPE (type_definition | type_body)
-//    : CREATE (OR REPLACE)? TYPE (type_definition | type_body)
+    : CREATE (OR REPLACE)? TYPE type_name FORCE? (OID CHAR_STRING)? object_type_def?
     ;
 
-// Create Type Specific Clauses
-
-type_definition
-    : type_name FORCE? (OID CHAR_STRING)? object_type_def?
+create_type_body
+    : CREATE (OR REPLACE)? TYPE BODY type_name (IS | AS) (type_body_elements)+ END
     ;
 
 object_type_def
@@ -430,10 +428,6 @@ nested_table_type_def
 
 sqlj_object_type
     : EXTERNAL NAME expression LANGUAGE JAVA USING (SQLDATA | CUSTOMDATUM | ORADATA)
-    ;
-
-type_body
-    : BODY type_name (IS | AS) (type_body_elements)+ END
     ;
 
 type_body_elements
