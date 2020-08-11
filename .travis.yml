@@ -2,4 +2,15 @@ language: java
 jdk:
   - openjdk11
   - openjdk14
-script: mvn -B verify
+script: mvn -B verify sonar:sonar -Pcoverage
+
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
+
+addons:
+  sonarcloud:
+    organization: "gavvvr"
+    token:
+      secure: "wkFZYl2WAJabSej37KRC7VGCI5Ujv24zUJk861kNuuDTFjIy9HnHrmSCGWp3e/U/o+baEroH1nNh4lAE6e7fXqB3fVoIyY4rZrNcqdRZZKVGkvNoz94bVORW0RzkqNXSasH0gUtM+YvDDM0C+VhF2my/6em5k1/D0j5KW8Kl+Ph5L64iKegDseWrriQx7WMx4IOi3PCmOWX8gCNWN2iUhohlTQhyOOFfM/aTWASbSEN2yx7FPDMuQxxYQyoOBxuIsdYNbguyCS83u55N/NrN0KLQ911dPcv0mfxUj6ltzR6N1+REs/NeCjw4lcjrR8rVAVAUwmKyiwUDArkQ7KsZypuFYIJguf3DrYAas8pEC543V6aTvZ71c3UsNwiu+4jEDmwh7haN0Si2AJrembC11LslgjHf3/DBS2krt/tFIo5zmZr4MgIAgqTWv7HmHRVF1JO3edDmA7AZDvhU1CGK1kYq4rqGRceYyM1SVSUiQLO018eG4HqCPxzswONFRMiC2a5O/4KLOXHCIX2R7wbshM4Gy8TzgBekTtMKhZ27ERpniYv6paF7u/z1GTdqXq8zh0m5U20GjlSEVDrAmqUIlZujxxzJOD/E/Z8M73G1BMe+fKVV7vkua3ckC/oq5fkFRCp70Au89K79vgtOUbO8aFO6HlCDySvXR3FD6WxOAAg="
