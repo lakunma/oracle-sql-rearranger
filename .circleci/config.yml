@@ -1,12 +1,26 @@
 version: 2.1
 
-orbs:
-  maven: circleci/maven@1.0.1
-  sonarcloud: sonarsource/sonarcloud@1.0.0
+jobs:
+  build:
+    docker:
+      - image: cimg/openjdk:14.0.2
+    steps:
+      - checkout
+      - restore_cache:
+          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
+      - run: mvn -B verify jacoco:report sonar:sonar -Pcoverage
+      - save_cache:
+          paths:
+            - ~/.m2
+            - ~/.sonar/cache
+          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
+      - store_test_results:
+          path: target/surefire-reports
+      - store_artifacts:
+          path: target/site/jacoco
 
 workflows:
   maven_test:
     jobs:
-      - maven/test:
-          command: -B verify sonar:sonar -Pcoverage
+      - build:
           context: SonarCloud
