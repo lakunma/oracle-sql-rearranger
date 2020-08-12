@@ -57,14 +57,6 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-pmd-plugin</artifactId>
-          <version>3.13.0</version>
-          <configuration>
-            <linkXRef>false</linkXRef>
-          </configuration>
-        </plugin>
-        <plugin>
           <groupId>org.sonarsource.scanner.maven</groupId>
           <artifactId>sonar-maven-plugin</artifactId>
           <version>3.7.0.1746</version>
@@ -85,6 +77,18 @@
     </pluginManagement>
 
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <linkXRef>false</linkXRef>
+          <excludeRoots>
+            <excludeRoot>target/generated-sources/antlr4</excludeRoot>
+            <excludeRoot>target/generated-sources/annotations</excludeRoot>
+          </excludeRoots>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
