@@ -2,7 +2,7 @@ language: java
 jdk:
   - openjdk11
   - openjdk14
-script: mvn -B verify sonar:sonar -Pcoverage
+script: mvn -B verify spotbugs:spotbugs sonar:sonar -Pcoverage
 
 cache:
   directories:
