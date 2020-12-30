@@ -2787,8 +2787,11 @@ column_definition
     ;
 
 virtual_column_definition
-    : column_name datatype? (GENERATED ALWAYS)? AS '(' expression ')'
-        VIRTUAL? inline_constraint*
+    : column_name datatype?
+         (VISIBLE | INVISIBLE)?
+        (GENERATED ALWAYS)? AS '(' expression ')'
+        VIRTUAL? (VISIBLE | INVISIBLE)?
+        inline_constraint*
     ;
 
 out_of_line_part_storage

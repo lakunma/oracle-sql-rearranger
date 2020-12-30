@@ -2,3 +2,5 @@
 gen/
 target/
 *.iml
+
+dependency-reduced-pom.xml
