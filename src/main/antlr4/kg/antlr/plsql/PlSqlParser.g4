@@ -402,7 +402,7 @@ dependent_exceptions_part
     ;
 
 create_type
-    : CREATE (OR REPLACE)? TYPE type_name FORCE? (OID CHAR_STRING)? object_type_def?
+    : CREATE (OR REPLACE)? EDITIONABLE? TYPE type_name FORCE? (OID CHAR_STRING)? object_type_def?
     ;
 
 create_type_body
@@ -3033,7 +3033,7 @@ varray_type_def
 // Statements
 
 seq_of_statements
-    : (statement (';' | EOF) | label_declaration)+
+    : (statement (';' | EOF) | label_declaration | if_cond_compilation_statement)+
     ;
 
 label_declaration
@@ -3048,6 +3048,7 @@ statement
     | exit_statement
     | goto_statement
     | if_statement
+    | if_cond_compilation_statement
     | loop_statement
     | forall_statement
     | null_statement
@@ -3084,12 +3085,20 @@ if_statement
     : IF condition THEN seq_of_statements elsif_part* else_part? END IF
     ;
 
+if_cond_compilation_statement
+    : IF_COND_COMPILATION condition THEN_COND_COMPILATION seq_of_statements else_cond_compilation_part? END_COND_COMPILATION
+    ;
+
 elsif_part
     : ELSIF condition THEN seq_of_statements
     ;
 
 else_part
     : ELSE seq_of_statements
+    ;
+
+else_cond_compilation_part
+    : ELSE_COND_COMPILATION seq_of_statements
     ;
 
 loop_statement

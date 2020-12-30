@@ -13,3 +13,5 @@ CREATE TYPE person AS OBJECT
     manager     REF person );
 ;
 
+CREATE OR REPLACE EDITIONABLE TYPE StreetName as table of VARCHAR2(256);
+

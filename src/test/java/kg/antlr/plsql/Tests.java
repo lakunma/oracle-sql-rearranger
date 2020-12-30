@@ -13,12 +13,18 @@ import java.util.stream.Stream;
 public class Tests {
     @ParameterizedTest
     @MethodSource("testFilesPaths")
-    public void tryToPare(String filePath) {
-        ParserRuleContext us = TestUtils.parseSqlScript(filePath);
-        Optional.ofNullable(us.exception).ifPresent(e -> {
+    public void tryToParse(String filePath) {
+        try {
+            ParserRuleContext us = TestUtils.parseSqlScript(filePath);
+            Optional.ofNullable(us.exception).ifPresent(e -> {
+                throw e;
+            });
+            System.out.println("Found " + us.children.size() + " statements in " + System.lineSeparator() + filePath);
+        } catch (Exception e) {
+            System.err.println("Failed on path: " + filePath);
             throw e;
-        });
-        System.out.println("Found " + us.children.size() + " statements in " + System.lineSeparator() + filePath);
+        }
+
     }
 
     static Stream<String> testFilesPaths() {
